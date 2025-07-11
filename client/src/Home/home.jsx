@@ -1,9 +1,9 @@
-import React,{useEffect} from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faLocation, faPhone } from '@fortawesome/free-solid-svg-icons';
-import { ClipLoader,BarLoader  } from 'react-spinners';
-import * as XLSX from 'xlsx';
+import { BarLoader  } from 'react-spinners';
+// import * as XLSX from 'xlsx';
 
 import './home.css';
 
