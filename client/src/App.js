@@ -100,7 +100,7 @@ useEffect(() => {
           tamilName: row['tamilName'],
           originalRate: parseFloat(row['originalRate']),
           rate: parseFloat(row['rate']),
-          quantity: 0,
+          quantity: 0, 
           checked: false
         });
       });
