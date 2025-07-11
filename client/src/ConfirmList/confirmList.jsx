@@ -50,20 +50,45 @@ const ConfirmListPage = ({ setSelectedItems, selectedItems, totalRate, setTotalR
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
   };
+const handleConfirmOrder = async () => {
+  alert('Order submitted successfully!');
 
-  const handleConfirmOrder = () => {
-    alert('Order submitted successfully!');
-    const selectedCrackers = crackers.flatMap(category =>
-      category.items.filter(item => item.checked).map(item => ({ ...item, category: category.category }))
-    );
-    // const selectedCrackersGiftBox = giftBoxCrackers.flatMap(category =>
-    //   category.items.filter(item => item.checked).map(item => ({ ...item, category: category.category }))
-    // );
+  const selectedCrackers = crackers.flatMap(category =>
+    category.items.filter(item => item.checked).map(item => ({
+      ...item,
+      category: category.category
+    }))
+  );
 
-    setSelectedItemsPdf(selectedCrackers);
-    // setGiftBoxPdf(selectedCrackersGiftBox)
-    scrollRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
+  setSelectedItemsPdf(selectedCrackers);
+  scrollRef.current?.scrollIntoView({ behavior: 'smooth' });
+ 
+const formUrl = "https://script.google.com/macros/s/AKfycbyoYOccGjTjFuo_TFVFVd_gwZjH8oBmxVPCyhMcix3qBkhK_UJYXbewokeJiXcTmY7Q/exec";
+
+  const formData = new URLSearchParams();
+  formData.append('customerName', customerName);
+  formData.append('customerNumber', customerNumber);
+  formData.append('customerAddress', customerAddress);
+  formData.append('customerState', customerState);
+  formData.append('totalRate', totalRate);
+
+  try {
+    await fetch(formUrl, {
+      method: 'POST',
+      mode: 'no-cors', // this is required to bypass CORS
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: formData.toString(),
+    });
+
+    alert("Your Details Send To Store!");
+  } catch (error) {
+    console.error("Submission error:", error);
+    alert("Error submitting order.");
+  }
+
+};
 
   // Group selected items by category
   const groupedItems = {};
