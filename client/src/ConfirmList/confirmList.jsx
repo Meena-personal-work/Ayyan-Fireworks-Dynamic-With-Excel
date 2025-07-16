@@ -82,7 +82,7 @@ const formUrl = "https://script.google.com/macros/s/AKfycbw5GhqEY7at54dkosbN4LCM
       body: formData.toString(),
     });
 
-    alert("Your Details Send To Store!");
+    // alert("Your Details Send To Store!");
   } catch (error) {
     console.error("Submission error:", error);
     alert("Error submitting order.");
